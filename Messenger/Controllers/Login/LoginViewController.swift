@@ -146,6 +146,7 @@ class LoginViewController: UIViewController {
 
             let user = result.user
             print("DEBUG: Logged in user \(user)")
+            self.navigationController?.dismiss(animated: true)
         }
     }
 

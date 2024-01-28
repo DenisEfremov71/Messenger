@@ -18,12 +18,10 @@ class RegisterViewController: UIViewController {
 
     private let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "person")
+        imageView.image = UIImage(systemName: "person.circle")
         imageView.tintColor = .gray
         imageView.contentMode = .scaleAspectFit
         imageView.layer.masksToBounds = true
-        imageView.layer.borderWidth = 2
-        imageView.layer.borderColor = UIColor.lightGray.cgColor
         return imageView
     }()
 
@@ -191,26 +189,37 @@ class RegisterViewController: UIViewController {
               let email = emailField.text, let password = passwordField.text,
               !firstName.isEmpty, !lastName.isEmpty,
               !email.isEmpty, !password.isEmpty, password.count >= 6 else {
-            alertUserLoginError()
+            alertUserLoginError(title: "Invalid Registration Info", message: "Please enter all the information to create a new account.")
             return
         }
 
-        // Firebase log in
-        FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
+        // Firebase register
+
+        DatabaseManager.shared.userExists(with: email) { [weak self] exists in
             guard let self = self else { return }
-            guard let result = authResult, error == nil else {
-                // TODO: - Add Error Handling
-                print("DEBUG: Error creating a user = \(error?.localizedDescription ?? "")")
+            guard !exists else {
+                alertUserLoginError(title: "User Exists", message: "User with email address \(email) already existss. Please use a different email address.")
                 return
             }
 
-            let user = result.user
-            print("DEBUG: Created user: \(user)")
+            FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+                guard authResult != nil, error == nil else {
+                    // TODO: - Add Error Handling
+                    print("DEBUG: Error creating a user = \(error?.localizedDescription ?? "")")
+                    return
+                }
+
+                let user = ChatAppUser(firstName: firstName, lastName: lastName, emailAddress: email)
+                DatabaseManager.shared.insertUser(with: user)
+
+                self.navigationController?.dismiss(animated: true)
+            }
         }
+
     }
 
-    func alertUserLoginError() {
-        let alert = UIAlertController(title: "Invalid Registration Info", message: "Please enter all the information to create a new account.", preferredStyle: .alert)
+    func alertUserLoginError(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
         alert.addAction(action)
         present(alert, animated: true)
