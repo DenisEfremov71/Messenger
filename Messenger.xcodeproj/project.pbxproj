@@ -20,6 +20,9 @@
 		7215CEFF2B656893004A8ADF /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7215CEFE2B656893004A8ADF /* FirebaseFirestoreSwift */; };
 		7215CF012B656893004A8ADF /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 7215CF002B656893004A8ADF /* FirebaseStorage */; };
 		7215CF032B656A0E004A8ADF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7215CF022B656A0E004A8ADF /* GoogleService-Info.plist */; };
+		723DA4162B68537E005F6A28 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 723DA4152B68537E005F6A28 /* FacebookCore */; };
+		723DA4182B68537E005F6A28 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 723DA4172B68537E005F6A28 /* FacebookLogin */; };
+		723DA41A2B68537E005F6A28 /* FacebookShare in Frameworks */ = {isa = PBXBuildFile; productRef = 723DA4192B68537E005F6A28 /* FacebookShare */; };
 		728156302B66DE94007665BC /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7281562F2B66DE94007665BC /* FirebaseAnalytics */; };
 		728156322B66DE94007665BC /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 728156312B66DE94007665BC /* FirebaseAnalyticsOnDeviceConversion */; };
 		728156342B66DE95007665BC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 728156332B66DE95007665BC /* FirebaseAuth */; };
@@ -69,10 +72,13 @@
 				728156302B66DE94007665BC /* FirebaseAnalytics in Frameworks */,
 				7281563E2B66DE95007665BC /* FirebaseStorageCombine-Community in Frameworks */,
 				728156382B66DE95007665BC /* FirebaseFirestore in Frameworks */,
+				723DA4182B68537E005F6A28 /* FacebookLogin in Frameworks */,
 				728156322B66DE94007665BC /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 				7281563C2B66DE95007665BC /* FirebaseStorage in Frameworks */,
 				7281563A2B66DE95007665BC /* FirebaseFirestoreSwift in Frameworks */,
 				7215CEFD2B656893004A8ADF /* FirebaseFirestore in Frameworks */,
+				723DA41A2B68537E005F6A28 /* FacebookShare in Frameworks */,
+				723DA4162B68537E005F6A28 /* FacebookCore in Frameworks */,
 				7215CF012B656893004A8ADF /* FirebaseStorage in Frameworks */,
 				728156362B66DE95007665BC /* FirebaseDatabase in Frameworks */,
 				7215CEFF2B656893004A8ADF /* FirebaseFirestoreSwift in Frameworks */,
@@ -233,6 +239,9 @@
 				728156392B66DE95007665BC /* FirebaseFirestoreSwift */,
 				7281563B2B66DE95007665BC /* FirebaseStorage */,
 				7281563D2B66DE95007665BC /* FirebaseStorageCombine-Community */,
+				723DA4152B68537E005F6A28 /* FacebookCore */,
+				723DA4172B68537E005F6A28 /* FacebookLogin */,
+				723DA4192B68537E005F6A28 /* FacebookShare */,
 			);
 			productName = Messenger;
 			productReference = 729DB31E2B630F0B005448FE /* Messenger.app */;
@@ -264,6 +273,7 @@
 			mainGroup = 729DB3152B630F0B005448FE;
 			packageReferences = (
 				7215CEF72B656893004A8ADF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				723DA4142B68537E005F6A28 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 			);
 			productRefGroup = 729DB31F2B630F0B005448FE /* Products */;
 			projectDirPath = "";
@@ -537,6 +547,14 @@
 				minimumVersion = 10.20.0;
 			};
 		};
+		723DA4142B68537E005F6A28 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 14.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -564,6 +582,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7215CEF72B656893004A8ADF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		723DA4152B68537E005F6A28 /* FacebookCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 723DA4142B68537E005F6A28 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookCore;
+		};
+		723DA4172B68537E005F6A28 /* FacebookLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 723DA4142B68537E005F6A28 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookLogin;
+		};
+		723DA4192B68537E005F6A28 /* FacebookShare */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 723DA4142B68537E005F6A28 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookShare;
 		};
 		7281562F2B66DE94007665BC /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
