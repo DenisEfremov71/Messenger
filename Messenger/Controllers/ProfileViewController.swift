@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import FBSDKLoginKit
 
 class ProfileViewController: UIViewController {
 
@@ -34,6 +35,10 @@ extension ProfileViewController: UITableViewDelegate {
         )
         let logOutAction = UIAlertAction(title: "Log Out", style: .destructive) { [weak self] _ in
             guard let self = self else { return }
+
+            // Log Out Facebook
+            LoginManager().logOut()
+
             do {
                 try Auth.auth().signOut()
                 let vc = LoginViewController()
