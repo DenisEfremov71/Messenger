@@ -8,6 +8,8 @@
 import UIKit
 import FirebaseAuth
 import FacebookLogin
+import GoogleSignIn
+import GoogleSignInSwift
 
 class LoginViewController: UIViewController {
 
@@ -66,9 +68,14 @@ class LoginViewController: UIViewController {
         return button
     }()
 
-    private let fbLoginButton: FBLoginButton = {
+    private let facebookLoginButton: FBLoginButton = {
         let button = FBLoginButton()
         button.permissions = ["public_profile", "email"]
+        return button
+    }()
+
+    private let googleSignInButton: GIDSignInButton = {
+        let button = GIDSignInButton()
         return button
     }()
 
@@ -86,10 +93,11 @@ class LoginViewController: UIViewController {
         )
 
         loginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
+        googleSignInButton.addTarget(self, action: #selector(didTapGoogleSignInButon), for: .touchUpInside)
 
         emailField.delegate = self
         passwordField.delegate = self
-        fbLoginButton.delegate = self
+        facebookLoginButton.delegate = self
 
         // Add subviews
         view.addSubview(scrollView)
@@ -97,7 +105,8 @@ class LoginViewController: UIViewController {
         scrollView.addSubview(emailField)
         scrollView.addSubview(passwordField)
         scrollView.addSubview(loginButton)
-        scrollView.addSubview(fbLoginButton)
+        scrollView.addSubview(facebookLoginButton)
+        scrollView.addSubview(googleSignInButton)
     }
 
     override func viewDidLayoutSubviews() {
@@ -129,15 +138,69 @@ class LoginViewController: UIViewController {
             width: scrollView.width-60,
             height: 52
         )
-        fbLoginButton.frame = CGRect(
+        facebookLoginButton.frame = CGRect(
             x: 30,
             y: loginButton.bottom+10,
+            width: scrollView.width-60,
+            height: 52
+        )
+        googleSignInButton.frame = CGRect(
+            x: 30,
+            y: facebookLoginButton.bottom+10,
             width: scrollView.width-60,
             height: 52
         )
     }
 
     // MARK: - Helpers
+
+    @objc private func didTapGoogleSignInButon() {
+
+//        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+//              let window = windowScene.windows.first,
+//              let rootViewController = window.rootViewController else {
+//            // TODO: - Add Error Handling
+//            print("DEBUG: Error getting root view controller")
+//            return
+//        }
+
+        // TODO: - Check if this is necessary
+        //logoutCurrentUser()
+
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [weak self] result, error in
+            guard let self = self else { return }
+            guard result != nil, error == nil else {
+                // TODO: - Add Error Handling
+                print("DEBUG: Error signing in with Google = \(error?.localizedDescription ?? "no error")")
+                return
+            }
+            guard let googleUser = result?.user,
+                  let userId = googleUser.userID,
+                  let idToken = googleUser.idToken else {
+                // TODO: - Add Error Handling
+                print("DEBUG: Error getting Google ID token")
+                return
+            }
+
+            let credentials = GoogleAuthProvider.credential(
+                withIDToken: idToken.tokenString,
+                accessToken: googleUser.accessToken.tokenString
+            )
+
+            Auth.auth().signIn(with: credentials) { [weak self] authDataResul, error in
+                guard let self = self else { return }
+                guard authDataResul != nil, error == nil else {
+                    // TODO: - Add Error Handling
+                    print("DEBUG: Facebook credential login failed, MFA may be needed")
+                    return
+                }
+
+                print("DEBUG: Successfully logged user in")
+                self.navigationController?.dismiss(animated: true)
+            }
+        }
+
+    }
 
     @objc private func didTapLoginButton() {
 
@@ -234,9 +297,9 @@ extension LoginViewController: LoginButtonDelegate {
                 }
             }
 
-            let credential = FacebookAuthProvider.credential(withAccessToken: token)
+            let credentials = FacebookAuthProvider.credential(withAccessToken: token)
 
-            Auth.auth().signIn(with: credential) { [weak self] authDataResul, error in
+            Auth.auth().signIn(with: credentials) { [weak self] authDataResul, error in
                 guard let self = self else { return }
                 guard authDataResul != nil, error == nil else {
                     // TODO: - Add Error Handling

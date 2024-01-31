@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CLIENT_ID</key>
+	<string>508373971267-2s33bvlp0grcnp5kva5gt8c5j36u4024.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.508373971267-2s33bvlp0grcnp5kva5gt8c5j36u4024</string>
 	<key>API_KEY</key>
 	<string>AIzaSyDcN-IRcHpTpBQNTrxNkHKkS_0R57lWgi0</string>
 	<key>GCM_SENDER_ID</key>
@@ -26,5 +30,7 @@
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:508373971267:ios:8d03e58c03c06122003ff6</string>
+	<key>DATABASE_URL</key>
+	<string>https://messenger-2b8d9-default-rtdb.firebaseio.com</string>
 </dict>
 </plist>
