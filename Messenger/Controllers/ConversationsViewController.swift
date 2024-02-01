@@ -10,6 +10,12 @@ import FirebaseAuth
 
 class ConversationsViewController: UIViewController {
 
+    private let tableView: UITableView = {
+        let tableView = UITableView()
+        //tableView.register(<#T##nib: UINib?##UINib?#>, forCellReuseIdentifier: <#T##String#>)
+        return tableView
+    }()
+
     // MARK: - Life Cycle
 
     override func viewDidLoad() {

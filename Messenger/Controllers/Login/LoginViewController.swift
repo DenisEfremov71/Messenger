@@ -175,7 +175,7 @@ class LoginViewController: UIViewController {
                 return
             }
             guard let googleUser = result?.user,
-                  let userId = googleUser.userID,
+                  let _ = googleUser.userID,
                   let idToken = googleUser.idToken else {
                 // TODO: - Add Error Handling
                 print("DEBUG: Error getting Google ID token")
