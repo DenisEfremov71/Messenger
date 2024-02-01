@@ -10,8 +10,11 @@ import FirebaseAuth
 import FacebookLogin
 import GoogleSignIn
 import GoogleSignInSwift
+import JGProgressHUD
 
 class LoginViewController: UIViewController {
+
+    private let spinner = JGProgressHUD(style: .dark)
 
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -156,14 +159,6 @@ class LoginViewController: UIViewController {
 
     @objc private func didTapGoogleSignInButon() {
 
-//        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-//              let window = windowScene.windows.first,
-//              let rootViewController = window.rootViewController else {
-//            // TODO: - Add Error Handling
-//            print("DEBUG: Error getting root view controller")
-//            return
-//        }
-
         // TODO: - Check if this is necessary
         //logoutCurrentUser()
 
@@ -196,7 +191,9 @@ class LoginViewController: UIViewController {
                 }
 
                 print("DEBUG: Successfully logged user in")
-                self.navigationController?.dismiss(animated: true)
+                DispatchQueue.main.async {
+                    self.navigationController?.dismiss(animated: true)
+                }
             }
         }
 
@@ -213,9 +210,16 @@ class LoginViewController: UIViewController {
             return
         }
 
-        // Firebase log in
+        spinner.show(in: view)
+
+        // Firebase Log In
         FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
             guard let self = self else { return }
+
+            DispatchQueue.main.async {
+                self.spinner.dismiss()
+            }
+
             guard let result = authResult, error == nil else {
                 // TODO: - Add Error Handling
                 print("DEBUG: Error logging in a user with email \(email). Error = \(error?.localizedDescription ?? "")")
@@ -224,7 +228,9 @@ class LoginViewController: UIViewController {
 
             let user = result.user
             print("DEBUG: Logged in user \(user)")
-            self.navigationController?.dismiss(animated: true)
+            DispatchQueue.main.async {
+                self.navigationController?.dismiss(animated: true)
+            }
         }
     }
 
@@ -308,7 +314,9 @@ extension LoginViewController: LoginButtonDelegate {
                 }
 
                 print("DEBUG: Successfully logged user in")
-                self.navigationController?.dismiss(animated: true)
+                DispatchQueue.main.async {
+                    self.navigationController?.dismiss(animated: true)
+                }
             }
         }
     }

@@ -13,6 +13,9 @@
 		7200BB632B6BF4E6008A20E8 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7200BB622B6BF4E6008A20E8 /* RealmSwift */; };
 		7200BB662B6BF544008A20E8 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 7200BB652B6BF544008A20E8 /* SDWebImage */; };
 		7200BB682B6BF544008A20E8 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7200BB672B6BF544008A20E8 /* SDWebImageMapKit */; };
+		7200BB6A2B6BFD11008A20E8 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7200BB692B6BFD11008A20E8 /* ChatViewController.swift */; };
+		7200BB6C2B6C044C008A20E8 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7200BB6B2B6C044C008A20E8 /* Message.swift */; };
+		7200BB6E2B6C05FC008A20E8 /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7200BB6D2B6C05FC008A20E8 /* Sender.swift */; };
 		720C3C5B2B6315EB00E361D3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720C3C5A2B6315EB00E361D3 /* LoginViewController.swift */; };
 		720C3C5D2B6315FC00E361D3 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720C3C5C2B6315FC00E361D3 /* RegisterViewController.swift */; };
 		720C3C5F2B63166300E361D3 /* PhotoViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720C3C5E2B63166300E361D3 /* PhotoViewerViewController.swift */; };
@@ -50,6 +53,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7200BB692B6BFD11008A20E8 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		7200BB6B2B6C044C008A20E8 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		7200BB6D2B6C05FC008A20E8 /* Sender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
 		720C3C5A2B6315EB00E361D3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		720C3C5C2B6315FC00E361D3 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		720C3C5E2B63166300E361D3 /* PhotoViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewerViewController.swift; sourceTree = "<group>"; };
@@ -125,8 +131,9 @@
 		722BC3A92B63135F00E802EC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				720C3C662B63180A00E361D3 /* Login */,
+				7200BB692B6BFD11008A20E8 /* ChatViewController.swift */,
 				729DB3252B630F0B005448FE /* ConversationsViewController.swift */,
+				720C3C662B63180A00E361D3 /* Login */,
 				720C3C622B6316DB00E361D3 /* NewConversationViewController.swift */,
 				720C3C5E2B63166300E361D3 /* PhotoViewerViewController.swift */,
 				720C3C642B63171300E361D3 /* ProfileViewController.swift */,
@@ -147,6 +154,8 @@
 			isa = PBXGroup;
 			children = (
 				7294D4E42B66E8E800C22673 /* ChatAppUser.swift */,
+				7200BB6B2B6C044C008A20E8 /* Message.swift */,
+				7200BB6D2B6C05FC008A20E8 /* Sender.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -336,14 +345,17 @@
 				7294D4E32B66E1A400C22673 /* DatabaseManager.swift in Sources */,
 				720C3C5D2B6315FC00E361D3 /* RegisterViewController.swift in Sources */,
 				720C3C692B631ECB00E361D3 /* UIView+Extensions.swift in Sources */,
+				7200BB6E2B6C05FC008A20E8 /* Sender.swift in Sources */,
 				7294D4E52B66E8E800C22673 /* ChatAppUser.swift in Sources */,
 				720C3C632B6316DB00E361D3 /* NewConversationViewController.swift in Sources */,
 				729DB3262B630F0B005448FE /* ConversationsViewController.swift in Sources */,
 				720C3C612B63167500E361D3 /* VideoPlayerViewController.swift in Sources */,
 				729DB3222B630F0B005448FE /* AppDelegate.swift in Sources */,
+				7200BB6A2B6BFD11008A20E8 /* ChatViewController.swift in Sources */,
 				720C3C652B63171300E361D3 /* ProfileViewController.swift in Sources */,
 				729DB3242B630F0B005448FE /* SceneDelegate.swift in Sources */,
 				720C3C5F2B63166300E361D3 /* PhotoViewerViewController.swift in Sources */,
+				7200BB6C2B6C044C008A20E8 /* Message.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
