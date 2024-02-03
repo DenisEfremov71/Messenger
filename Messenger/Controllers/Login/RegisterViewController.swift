@@ -220,7 +220,24 @@ class RegisterViewController: UIViewController {
                 }
 
                 let user = ChatAppUser(firstName: firstName, lastName: lastName, emailAddress: email)
-                DatabaseManager.shared.insertUser(with: user)
+                DatabaseManager.shared.insertUser(with: user) { success in
+                    if success {
+                        // upload image
+                        if let image = self.imageView.image, let data = image.pngData() {
+                            let filename = user.profilePictureFilename
+                            StorageManager.shared.uploadProfilePicture(with: data, fileName: filename) { result in
+                                switch result {
+                                case .failure(let error):
+                                    // TODO: - Add Error Handling
+                                    print("DEBUG: StorageManager failed to upload profile picture")
+                                case .success(let downloadUrl):
+                                    UserDefaults.standard.set(downloadUrl, forKey: "profilePictureUrl")
+                                    print("DEBUG: Profile picture download URL = \(downloadUrl)")
+                                }
+                            }
+                        }
+                    }
+                }
 
                 DispatchQueue.main.async {
                     self.navigationController?.dismiss(animated: true)

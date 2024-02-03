@@ -16,6 +16,7 @@
 		7200BB6A2B6BFD11008A20E8 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7200BB692B6BFD11008A20E8 /* ChatViewController.swift */; };
 		7200BB6C2B6C044C008A20E8 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7200BB6B2B6C044C008A20E8 /* Message.swift */; };
 		7200BB6E2B6C05FC008A20E8 /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7200BB6D2B6C05FC008A20E8 /* Sender.swift */; };
+		7200BB702B6D7D52008A20E8 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7200BB6F2B6D7D52008A20E8 /* StorageManager.swift */; };
 		720C3C5B2B6315EB00E361D3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720C3C5A2B6315EB00E361D3 /* LoginViewController.swift */; };
 		720C3C5D2B6315FC00E361D3 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720C3C5C2B6315FC00E361D3 /* RegisterViewController.swift */; };
 		720C3C5F2B63166300E361D3 /* PhotoViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720C3C5E2B63166300E361D3 /* PhotoViewerViewController.swift */; };
@@ -56,6 +57,7 @@
 		7200BB692B6BFD11008A20E8 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		7200BB6B2B6C044C008A20E8 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		7200BB6D2B6C05FC008A20E8 /* Sender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
+		7200BB6F2B6D7D52008A20E8 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		720C3C5A2B6315EB00E361D3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		720C3C5C2B6315FC00E361D3 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		720C3C5E2B63166300E361D3 /* PhotoViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewerViewController.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				7294D4E22B66E1A400C22673 /* DatabaseManager.swift */,
+				7200BB6F2B6D7D52008A20E8 /* StorageManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 				729DB3242B630F0B005448FE /* SceneDelegate.swift in Sources */,
 				720C3C5F2B63166300E361D3 /* PhotoViewerViewController.swift in Sources */,
 				7200BB6C2B6C044C008A20E8 /* Message.swift in Sources */,
+				7200BB702B6D7D52008A20E8 /* StorageManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

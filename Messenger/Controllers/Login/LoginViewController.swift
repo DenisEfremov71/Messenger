@@ -171,10 +171,48 @@ class LoginViewController: UIViewController {
             }
             guard let googleUser = result?.user,
                   let _ = googleUser.userID,
+                  let email = googleUser.profile?.email,
+                  let firstName = googleUser.profile?.givenName,
+                  let lastName = googleUser.profile?.familyName,
+                  let pictureUrl = googleUser.profile?.imageURL(withDimension: 200),
                   let idToken = googleUser.idToken else {
                 // TODO: - Add Error Handling
-                print("DEBUG: Error getting Google ID token")
+                print("DEBUG: Error getting Google user info")
                 return
+            }
+
+            DatabaseManager.shared.userExists(with: email) { exists in
+                if !exists {
+                    let user = ChatAppUser(firstName: firstName, lastName: lastName, emailAddress: email)
+                    DatabaseManager.shared.insertUser(with: user) { success in
+                        if success {
+
+                            URLSession.shared.dataTask(with: pictureUrl) { data, _, error in
+                                guard let data = data, error == nil else {
+                                    // TODO: - Add Error Handling
+                                    print("DEBUG: Failed to get Google profile image")
+                                    return
+                                }
+
+                                // upload image
+                                let filename = user.profilePictureFilename
+                                StorageManager.shared.uploadProfilePicture(with: data, fileName: filename) { result in
+                                    switch result {
+                                    case .failure(let error):
+                                        // TODO: - Add Error Handling
+                                        print("DEBUG: StorageManager failed to upload profile picture, error = \(error.localizedDescription)")
+                                    case .success(let downloadUrl):
+                                        UserDefaults.standard.set(downloadUrl, forKey: "profilePictureUrl")
+                                        print("DEBUG: Profile picture download URL = \(downloadUrl)")
+                                    }
+                                }
+
+                            }
+                            .resume()
+
+                        }
+                    }
+                }
             }
 
             let credentials = GoogleAuthProvider.credential(
@@ -275,7 +313,7 @@ extension LoginViewController: LoginButtonDelegate {
 
         let facebookRequest = FBSDKLoginKit.GraphRequest(
             graphPath: "me",
-            parameters: ["fields" : "email, first_name, last_name"],
+            parameters: ["fields" : "email, first_name, last_name, picture.type(large)"],
             tokenString: token,
             version: nil,
             httpMethod: .get
@@ -289,8 +327,11 @@ extension LoginViewController: LoginButtonDelegate {
             }
 
             guard let firstName = result["first_name"] as? String, 
-                    let lastName = result["last_name"] as? String,
-                  let email = result["email"] as? String else {
+                  let lastName = result["last_name"] as? String,
+                  let email = result["email"] as? String,
+                  let picture = result["picture"] as? [String: Any],
+                  let data = picture["data"] as? [String: Any],
+                  let pictureUrl = data["url"] as? String else {
                 // TODO: - Add Error Handling
                 print("DEBUG: Error retrieving user data from Facebook")
                 return
@@ -299,7 +340,36 @@ extension LoginViewController: LoginButtonDelegate {
             DatabaseManager.shared.userExists(with: email) { exists in
                 if !exists {
                     let user = ChatAppUser(firstName: firstName, lastName: lastName, emailAddress: email)
-                    DatabaseManager.shared.insertUser(with: user)
+                    DatabaseManager.shared.insertUser(with: user) { success in
+                        if success {
+
+                            guard let url = URL(string: pictureUrl) else { return }
+
+                            URLSession.shared.dataTask(with: url) { data, _, error in
+                                guard let data = data, error == nil else {
+                                    // TODO: - Add Error Handling
+                                    print("DEBUG: Failed to get Facebook profile image")
+                                    return
+                                }
+
+                                // upload image
+                                let filename = user.profilePictureFilename
+                                StorageManager.shared.uploadProfilePicture(with: data, fileName: filename) { result in
+                                    switch result {
+                                    case .failure(let error):
+                                        // TODO: - Add Error Handling
+                                        print("DEBUG: StorageManager failed to upload profile picture, error = \(error.localizedDescription)")
+                                    case .success(let downloadUrl):
+                                        UserDefaults.standard.set(downloadUrl, forKey: "profilePictureUrl")
+                                        print("DEBUG: Profile picture download URL = \(downloadUrl)")
+                                    }
+                                }
+
+                            }
+                            .resume()
+
+                        }
+                    }
                 }
             }
 
