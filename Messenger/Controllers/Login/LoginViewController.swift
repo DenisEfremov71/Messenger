@@ -181,6 +181,8 @@ class LoginViewController: UIViewController {
                 return
             }
 
+            UserDefaults.standard.set(email, forKey: "email")
+
             DatabaseManager.shared.userExists(with: email) { exists in
                 if !exists {
                     let user = ChatAppUser(firstName: firstName, lastName: lastName, emailAddress: email)
@@ -265,6 +267,9 @@ class LoginViewController: UIViewController {
             }
 
             let user = result.user
+
+            UserDefaults.standard.set(email, forKey: "email")
+
             print("DEBUG: Logged in user \(user)")
             DispatchQueue.main.async {
                 self.navigationController?.dismiss(animated: true)
@@ -336,6 +341,8 @@ extension LoginViewController: LoginButtonDelegate {
                 print("DEBUG: Error retrieving user data from Facebook")
                 return
             }
+
+            UserDefaults.standard.set(email, forKey: "email")
 
             DatabaseManager.shared.userExists(with: email) { exists in
                 if !exists {

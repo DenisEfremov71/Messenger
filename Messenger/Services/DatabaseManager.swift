@@ -15,6 +15,12 @@ final class DatabaseManager {
 
     private init() {}
 
+    static func safeEmail(with emailAddress: String) -> String {
+        var safeEmail = emailAddress.replacingOccurrences(of: ".", with: "-")
+        safeEmail = safeEmail.replacingOccurrences(of: "@", with: "-")
+        return safeEmail
+    }
+
 }
 
 // MARK: - Account Management
