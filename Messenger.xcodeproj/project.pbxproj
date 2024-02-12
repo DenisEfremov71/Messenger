@@ -32,6 +32,7 @@
 		723DA4162B68537E005F6A28 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 723DA4152B68537E005F6A28 /* FacebookCore */; };
 		723DA4182B68537E005F6A28 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 723DA4172B68537E005F6A28 /* FacebookLogin */; };
 		723DA41A2B68537E005F6A28 /* FacebookShare in Frameworks */ = {isa = PBXBuildFile; productRef = 723DA4192B68537E005F6A28 /* FacebookShare */; };
+		725920222B7A8B0F00676D1F /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725920212B7A8B0F00676D1F /* Array+Extensions.swift */; };
 		728156302B66DE94007665BC /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7281562F2B66DE94007665BC /* FirebaseAnalytics */; };
 		728156322B66DE94007665BC /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 728156312B66DE94007665BC /* FirebaseAnalyticsOnDeviceConversion */; };
 		728156342B66DE95007665BC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 728156332B66DE95007665BC /* FirebaseAuth */; };
@@ -65,6 +66,7 @@
 		720C3C622B6316DB00E361D3 /* NewConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationViewController.swift; sourceTree = "<group>"; };
 		720C3C642B63171300E361D3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		720C3C682B631ECB00E361D3 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		725920212B7A8B0F00676D1F /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		72941C1C2B6B06D100001A36 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7294D4E22B66E1A400C22673 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		7294D4E42B66E8E800C22673 /* ChatAppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAppUser.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				720C3C682B631ECB00E361D3 /* UIView+Extensions.swift */,
+				725920212B7A8B0F00676D1F /* Array+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 				7294D4E52B66E8E800C22673 /* ChatAppUser.swift in Sources */,
 				720C3C632B6316DB00E361D3 /* NewConversationViewController.swift in Sources */,
 				729DB3262B630F0B005448FE /* ConversationsViewController.swift in Sources */,
+				725920222B7A8B0F00676D1F /* Array+Extensions.swift in Sources */,
 				720C3C612B63167500E361D3 /* VideoPlayerViewController.swift in Sources */,
 				729DB3222B630F0B005448FE /* AppDelegate.swift in Sources */,
 				7200BB6A2B6BFD11008A20E8 /* ChatViewController.swift in Sources */,
